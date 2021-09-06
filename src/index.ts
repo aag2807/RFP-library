@@ -4,5 +4,4 @@ const foreach = <T extends unknown>(arr: T[], func: (arg0?: any) => any): void =
 }
 
 
-
-export { foreach }
+export default foreach 
