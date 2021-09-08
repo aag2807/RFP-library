@@ -1,5 +1,9 @@
 import { Predicate, TwoArgFunc } from './utils/types'
 
+/**
+ * @param arr - the array to be iterated
+ * @param func - a function applied to every item
+ */
 const foreach = <T extends unknown>(
 	arr: T[],
 	func: (value?: any, index?: number) => any,
@@ -7,6 +11,10 @@ const foreach = <T extends unknown>(
 	for (let i = 0; i < arr.length; i++) func(arr[i], i)
 }
 
+/**
+ * @param obj - object which keys and values will be iterated
+ * @param func - a function applied to every value in the object
+ */
 const foreachObject = <T extends unknown>(
 	obj: T,
 	func: (key?: any, value?: any) => any,
@@ -18,14 +26,29 @@ const foreachObject = <T extends unknown>(
 	}
 }
 
+/**
+ * @param predicate - a condition which when evaluated false if the code will execute
+ * @param fn - the function to be executed if predicate is true
+ */
 const unless = (predicate: Predicate, fn: () => any): void => {
 	if (!predicate) fn()
 }
 
-const times = (times: number, fn: (arg0?: any) => any): void => {
+/**
+ * 
+ * @param times - the amount of times the function passed will run
+ * @param fn  - the function to be run n amount of times
+ */
+const times = (times: number, fn: TwoArgFunc): void => {
 	for (let i = 0; i < times; i++) fn(i)
 }
 
+/**
+ * takes an array and a function evaluates every item in the function and if all items m eet the condition
+ * @param arr - array which will be evaluated 
+ * @param fn  - function which will evauluated every item of the array is true
+ * @returns boolean
+ */
 const every = <T extends unknown>(
 	arr: T[],
 	fn: (arg0?: any) => any,
@@ -39,6 +62,12 @@ const every = <T extends unknown>(
 	return result
 }
 
+/**
+ * takes an array and a function evaluates every item in the function and if some items meet the condition
+ * @param arr - array which will be evaluated 
+ * @param fn  - function which will evauluated every item of the array is true
+ * @returns boolean
+ */
 const some = <T extends unknown>(arr: T[], fn: TwoArgFunc): boolean => {
 	let result = false
 	for (const val of arr) {
@@ -178,7 +207,9 @@ const identity = <T extends unknown>(it:T|T[]):T|T[] => {
 
 
 
-export default {
+
+
+export {
 	foreach,
 	partial,
 	pipe,
