@@ -1,6 +1,6 @@
 {
   "name": "rfp-lib",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Reds functional programming library",
   "main": "index.js",
   "types": "./src/index.d.ts",
