@@ -1,12 +1,14 @@
 {
   "name": "rfp-lib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Reds functional programming library",
   "main": "index.js",
+  "types": "./src/index.d.ts",
   "scripts": {
     "start": "tsc --watch",
     "serve": "nodemon dist/index.js",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "publish": "npm publish --access public"
   },
   "keywords": [],
   "author": "aagn2807@gmail.com",
