@@ -1,4 +1,47 @@
+import { pick } from './utils/helpers';
 import { Predicate, TwoArgFunc } from './utils/types'
+
+
+const groupBy = <T extends unknown>(target: T[], fn: any) => {
+	fn = pick(fn)
+	return target
+		.map((val: T) => ({ val, key: fn(val) }))
+		.reduce((c: any, a: any) => {
+			c[a.key] = c[a.key] || [];
+			c[a.key].push(a.val)
+			return c
+		}, {})
+}
+
+const keyBy = <T extends unknown>(target: T[], fn: any) => {
+	fn = pick(fn)
+	return target
+		.map((val: T) => ({ val, key: fn(val) }))
+		.reduce((c: any, a: any) => {
+			c[a.key] = a.val
+			return c
+		}, {})
+}
+
+/**
+ * @param target - T
+ * @param prop  - String
+ * @returns an array of the keys without the one to be omiited
+ */
+const omit = <T extends unknown>(target: T, prop: string[]) => Object.entries(target).filter(([key]) => !prop.includes(key))
+
+
+const uniqBy = <T extends unknown>(target: T[], fn: any) => {
+	fn = pick(fn)
+	const dedupe = new Set()
+	return target
+		.filter((v: any) => {
+			const k = fn(v)
+			if (dedupe.has(k)) return false
+			dedupe.add(k)
+			return true
+		})
+}
 
 /**
  * @param arr - the array to be iterated
@@ -200,7 +243,7 @@ const compose = (...fns: any[]) => (value: any) => reduce(fns.reverse(), (acc, f
 
 const pipe = (...fns: any[]) => (value: any) => reduce(fns, (acc, fn) => fn(acc), value)
 
-const identity = <T extends unknown>(it:T|T[]):T|T[] => {
+const identity = <T extends unknown>(it: T | T[]): T | T[] => {
 	console.log(it)
 	return it
 }
