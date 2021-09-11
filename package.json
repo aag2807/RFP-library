@@ -2,7 +2,7 @@
   "name": "rfp-lib",
   "version": "1.0.4",
   "description": "Reds functional programming library",
-  "main": "index.js",
+  "main": "./lib/index.js",
   "types": "./src/index.d.ts",
   "scripts": {
     "start": "tsc --watch",
